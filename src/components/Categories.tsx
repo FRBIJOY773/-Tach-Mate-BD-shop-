@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { 
-  PC_component,
   Laptop, 
   Gamepad2, 
   Zap, 
