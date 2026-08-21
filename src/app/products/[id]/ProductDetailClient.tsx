@@ -54,7 +54,7 @@ export default function ProductDetailClient({ product, related }: Props) {
         ? product.brand
         : key === 'category'
         ? product.category
-        : (product as Record<string, unknown>)[key] as string | null | undefined;
+        : (product as unknown as Record<string, unknown>)[key] as string | null | undefined;
       return val ? { label, value: val } : null;
     })
     .filter(Boolean) as { label: string; value: string }[];

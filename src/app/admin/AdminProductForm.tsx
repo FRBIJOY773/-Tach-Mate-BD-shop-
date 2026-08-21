@@ -74,7 +74,7 @@ export default function AdminProductForm({ product, onSuccess, onCancel }: Props
     if (product) {
       const mapped: Record<string, unknown> = { ...DEFAULT_FORM };
       Object.keys(DEFAULT_FORM).forEach((key) => {
-        const val = (product as Record<string, unknown>)[key];
+        const val = (product as unknown as Record<string, unknown>)[key];
         mapped[key] = val !== null && val !== undefined ? String(val) : '';
       });
       mapped.inStock = product.inStock;
@@ -248,14 +248,14 @@ export default function AdminProductForm({ product, onSuccess, onCancel }: Props
                     {group.fields.map((field) => (
                       <div
                         key={field.key}
-                        style={{ gridColumn: field.span === 2 ? '1 / -1' : 'span 1' }}
+                        style={{ gridColumn: ('span' in field && field.span === 2) ? '1 / -1' : 'span 1' }}
                       >
                         <label style={labelStyle}>{field.label}</label>
                         {field.type === 'select' ? (
                           <select
                             value={form[field.key] as string || ''}
                             onChange={(e) => set(field.key, e.target.value)}
-                            required={field.required}
+                            required={'required' in field && field.required}
                             style={{ ...inputStyle, cursor: 'pointer' }}
                           >
                             <option value="">Select category…</option>
@@ -268,7 +268,7 @@ export default function AdminProductForm({ product, onSuccess, onCancel }: Props
                             type={field.type}
                             value={form[field.key] as string || ''}
                             onChange={(e) => set(field.key, e.target.value)}
-                            required={field.required}
+                            required={'required' in field && field.required}
                             style={inputStyle}
                             placeholder={field.key === 'price' ? '0' : ''}
                           />
