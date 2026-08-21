@@ -18,20 +18,8 @@ export interface Product {
   shortDescription?: string | null;
 
   // Specifications
-  processor?: string | null;
-  ram?: string | null;
-  storage?: string | null;
-  gpu?: string | null;
-  display?: string | null;
-  weight?: string | null;
-  warranty?: string | null;
-  color?: string | null;
-  battery?: string | null;
-  camera?: string | null;
-  os?: string | null;
-  connectivity?: string | null;
-  dimensions?: string | null;
-
+  Specification: string | null;
+  
   // Rich content
   details?: string | null;
   qna?: QnAItem[] | null;
